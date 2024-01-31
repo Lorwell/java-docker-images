@@ -10,7 +10,7 @@ ADD . /build
 WORKDIR /build
 
 # 执行编译
-RUN bash -c "source /etc/profile && dos2unix /build/gradlew && /build/gradlew nativeCompile"
+RUN bash -c "source /etc/profile && chmod 755 -R /build && dos2unix /build/gradlew && /build/gradlew nativeCompile"
 ```
 
 以上这个构建时模板的构建命令是基于 `gradle` 包管理器
