@@ -3,7 +3,7 @@
 ### 构建时镜像
 
 ```dockerfile
-FROM ccr.ccs.tencentyun.com/shaco_work/graalvm21:ubuntu22.build
+FROM ccr.ccs.tencentyun.com/shaco_work/graalvm:21_ubuntu22.build as builder
 
 # 复制项目所有代码
 ADD . /build
@@ -31,11 +31,11 @@ RUN bash -c "source /etc/profile && chmod 755 -R /build && dos2unix /build/gradl
 
 ```dockerfile
 # 运行时镜像
-FROM ccr.ccs.tencentyun.com/shaco_work/graalvm21:ubuntu22.runtime
+FROM ccr.ccs.tencentyun.com/shaco_work/graalvm:21_ubuntu22.runtime
 
 # 复制构建时镜像的构建结果
 WORKDIR /workspace
-COPY --from=0 "/build/server/build/native/nativeCompile/server" /workspace/app
+COPY --from=builder "/build/server/build/native/nativeCompile/server" /workspace/app
 
 EXPOSE 8080
 
@@ -51,7 +51,7 @@ CMD [ "sh", "-c", "/workspace/app -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
 ### 完整的文件
 
 ```dockerfile
-FROM ccr.ccs.tencentyun.com/shaco_work/graalvm21:ubuntu22.build
+FROM ccr.ccs.tencentyun.com/shaco_work/graalvm:21_ubuntu22.build as builder
 
 # 复制项目所有代码
 ADD . /build
@@ -61,11 +61,11 @@ WORKDIR /build
 RUN bash -c "source /etc/profile && dos2unix /build/gradlew && /build/gradlew nativeCompile"
 
 # 运行时镜像
-FROM ccr.ccs.tencentyun.com/shaco_work/graalvm21:ubuntu22.runtime
+FROM ccr.ccs.tencentyun.com/shaco_work/graalvm:21_ubuntu22.runtime
 
 # 复制构建时镜像的构建结果
 WORKDIR /workspace
-COPY --from=0 "/build/server/build/native/nativeCompile/server" /workspace/app
+COPY --from=builder "/build/server/build/native/nativeCompile/server" /workspace/app
 
 EXPOSE 8080
 
