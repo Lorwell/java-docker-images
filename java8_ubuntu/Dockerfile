@@ -10,9 +10,9 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; 
 RUN apt-get install -y curl unzip zip wget tar less vim
 
 # 安装jdk
-# https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=406&field_operating_system_target_id=426&field_architecture_target_id=391&field_java_package_target_id=401
-ENV JAVA_PKG=https://builds.openlogic.com/downloadJDK/openlogic-openjdk-jre/11.0.22+7/openlogic-openjdk-jre-11.0.22+7-linux-x64.tar.gz \
-  JAVA_HOME=/usr/java/jdk-11
+# https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=426&field_architecture_target_id=391&field_java_package_target_id=401
+ENV JAVA_PKG=https://builds.openlogic.com/downloadJDK/openlogic-openjdk-jre/8u402-b06/openlogic-openjdk-jre-8u402-b06-linux-x64.tar.gz \
+  JAVA_HOME=/usr/java/jdk-8
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -eux; \
@@ -41,6 +41,6 @@ ENV LANGUAGE en_US.utf8
 ENV LC_ALL en_US.utf8
 
 # 复制上个镜像的 jdk
-ENV	JAVA_HOME=/usr/java/jdk-11
+ENV	JAVA_HOME=/usr/java/jdk-8
 ENV	PATH $JAVA_HOME/bin:$PATH
 COPY --from=builder $JAVA_HOME $JAVA_HOME
