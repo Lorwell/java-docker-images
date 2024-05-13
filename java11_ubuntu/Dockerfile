@@ -30,7 +30,10 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; 
     apt-get update;
 
 # 安装常用命令
-RUN apt-get install -y curl unzip zip wget tar less vim dos2unix
+RUN apt-get install -y curl unzip zip wget tar less vim dos2unix tzdata
+
+# 设置中国上海时区
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 设置编码
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
