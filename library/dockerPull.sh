@@ -1,6 +1,6 @@
 #!/bin/bash
 
-image=leantime/leantime:latest
+image=docker.shacocloud.uk/leantime/leantime:latest
 # 因为是镜像名称转为版本号，所以需要将冒号转为下划线
 target=leantime_latest
 
