@@ -38,15 +38,6 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; 
 # 安装常用命令
 RUN apt-get install -y curl unzip zip wget tar less vim dos2unix
 
-# 安装 前端构建工具
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash &&  \
-    \. "$HOME/.nvm/nvm.sh" && \
-    nvm install 22 && \
-    node -v && \
-    nvm current && \
-    corepack enable pnpm && \
-    pnpm -v
-
 # 安装 graalvm 需要的依赖
 RUN apt-get install -y build-essential libz-dev zlib1g-dev
 
