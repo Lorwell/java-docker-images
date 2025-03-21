@@ -21,6 +21,6 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 设置中文环境变量
-ENV LANG zh_CN.UTF-8
-ENV LANGUAGE zh_CN:zh
-ENV LC_ALL zh_CN.UTF-8
+ENV LANG=zh_CN.UTF-8
+ENV LANGUAGE=zh_CN:zh
+ENV LC_ALL=zh_CN.UTF-8

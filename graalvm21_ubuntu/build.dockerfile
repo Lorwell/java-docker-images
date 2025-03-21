@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as builder
+FROM ubuntu:22.04 AS builder
 
 # 设置为 阿里云的源
 RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; \
@@ -38,6 +38,9 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list; 
 # 安装常用命令
 RUN apt-get install -y curl unzip zip wget tar less vim dos2unix
 
+# 安装 前端构建工具
+RUN apt-get install -y nodejs npm && npm install -g pnpm
+
 # 安装 graalvm 需要的依赖
 RUN apt-get install -y build-essential libz-dev zlib1g-dev
 
@@ -50,11 +53,11 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 设置中文环境变量
-ENV LANG zh_CN.UTF-8
-ENV LANGUAGE zh_CN:zh
-ENV LC_ALL zh_CN.UTF-8
+ENV LANG=zh_CN.UTF-8
+ENV LANGUAGE=zh_CN:zh
+ENV LC_ALL=zh_CN.UTF-8
 
 # 复制上个镜像的 jdk
 ENV	JAVA_HOME=/usr/java/jdk-21
-ENV	PATH $JAVA_HOME/bin:$PATH
+ENV	PATH=$JAVA_HOME/bin:$PATH
 COPY --from=builder $JAVA_HOME $JAVA_HOME
