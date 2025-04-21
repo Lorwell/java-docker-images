@@ -8,14 +8,14 @@ variable "IMAGE_REGISTRY" {
 
 target "graalvm21_ubuntu-build" {
   context = "."
-  dockerfile = "graalvm21_ubuntu/build.dockerfile"
+  dockerfile = "build.dockerfile"
   platforms = ["linux/amd64", "linux/arm64"]
   tags = ["${IMAGE_REGISTRY}/jre:graalvm21_ubuntu22.build"]
 }
 
 target "graalvm21_ubuntu22-runtime" {
   context = "."
-  dockerfile = "graalvm21_ubuntu/runtime.dockerfile"
+  dockerfile = "runtime.dockerfile"
   platforms = ["linux/amd64", "linux/arm64"]
   tags = ["${IMAGE_REGISTRY}/jre:graalvm21_ubuntu22.runtime"]
 }
