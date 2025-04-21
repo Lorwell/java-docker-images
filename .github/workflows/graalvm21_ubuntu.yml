@@ -23,4 +23,7 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          cd graalvm21_ubuntu && docker buildx bake -f docker-bake.hcl --push
+          pwd
+          ls -a
+          cd graalvm21_ubuntu
+          docker buildx bake -f docker-bake.hcl --push
