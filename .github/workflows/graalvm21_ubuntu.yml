@@ -1,4 +1,4 @@
-name: CI Build and Deploy
+name: graalvm21_ubuntu build
 
 on: workflow_dispatch
 
