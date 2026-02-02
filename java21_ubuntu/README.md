@@ -5,6 +5,6 @@
 使用方式：
 
 ```dockerfile
-FROM ccr.ccs.tencentyun.com/shaco_work/jre:21_ubuntu22
+FROM docker.io/moailaozi/jre:21_ubuntu22
 ```
 
