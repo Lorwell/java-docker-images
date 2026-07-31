@@ -52,6 +52,7 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debia
         libxtst6 \
         locales \
         tzdata \
+        wget \
         zlib1g && \
     ln -snf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     printf 'Asia/Shanghai\n' > /etc/timezone && \
